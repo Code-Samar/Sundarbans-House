@@ -395,13 +395,14 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   padding-bottom: 2rem;
 }
 .hero-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 .hero-bg-video {
   position: absolute;
@@ -412,6 +413,7 @@ body {
   object-position: center center;
   transform: scale(1.08);
   transition: transform 0.1s linear;
+  will-change: transform;
 }
 .hero-bg-img {
   width: 100%;
@@ -429,6 +431,24 @@ body {
     rgba(8, 7, 5, 0.82) 50%,
     rgba(8, 7, 5, 0.9) 100%
   );
+}
+
+body.video-bg-mode .hero-section,
+body.video-bg-mode .marquee-band,
+body.video-bg-mode .section,
+body.video-bg-mode .cta-section,
+body.video-bg-mode .footer {
+  position: relative;
+  z-index: 2;
+}
+
+body.video-bg-mode .hero-section .hero-bg {
+  z-index: 1;
+}
+
+body.video-bg-mode .navbar {
+  position: fixed;
+  z-index: 1000;
 }
 .hero-content {
   position: relative;
